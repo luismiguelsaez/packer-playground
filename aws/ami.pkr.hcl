@@ -21,6 +21,11 @@ variable "iam_role" {
   default = "arn:aws:iam::393788435358:role/DelegatedAdministrator"
 }
 
+variable "docker_package_version" {
+  type = string
+  default = "18.06.1~ce~3-0~ubuntu"
+}
+
 source "amazon-ebs" "ubuntu" {
   ami_name      = "${var.ami_prefix}-${local.timestamp}"
   instance_type = "t2.micro"
@@ -53,7 +58,7 @@ build {
     playbook_file = "./provision.yaml"
     extra_arguments = [
       "--extra-vars",
-      "docker_package_version=18.06.1~ce~3-0~ubuntu"
+      "docker_package_version=${var.docker_package_version}"
     ]
   }
 }
