@@ -49,13 +49,11 @@ build {
     "source.amazon-ebs.ubuntu"
   ]
 
-  provisioner "shell" {
-    environment_vars = [
-      "PKGS=0",
-    ]
-    inline = [
-      "sudo apt-get update -y",
-      "sudo apt-get upgrade -y"
+  provisioner "ansible" {
+    playbook_file = "./provision.yaml"
+    extra_arguments = [
+      "--extra-vars",
+      "docker_package_version=18.06.1~ce~3-0~ubuntu"
     ]
   }
 }

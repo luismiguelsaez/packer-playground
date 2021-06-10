@@ -1,0 +1,33 @@
+---
+
+- name: Ubuntu server configuration
+  hosts: all
+  tasks:
+  
+    - name: Update packages
+      apt:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - gnupg
+          - lsb-release
+        state: present
+        update_cache: True
+
+    - name: Add docker repo key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add docker repo
+      apt_repository:
+        repo: "deb https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+        state: present
+
+    - name: Install docker package
+      apt:
+        name:
+          - docker-ce={{ docker_package_version | default("18.06.1~ce~3-0~ubuntu") }}
+        state: present
+        update_cache: True
