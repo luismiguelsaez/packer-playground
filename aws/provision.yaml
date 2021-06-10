@@ -2,6 +2,7 @@
 
 - name: Ubuntu server configuration
   hosts: all
+  become: True
   tasks:
   
     - name: Update packages
