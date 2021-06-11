@@ -11,6 +11,11 @@ locals {
   timestamp = regex_replace(timestamp(), "[- TZ:]", "")
 }
 
+variable "region" {
+  type    = string
+  default = "us-east-1"
+}
+
 variable "ami_prefix" {
   type    = string
   default = "ubuntu-docker"
@@ -19,6 +24,11 @@ variable "ami_prefix" {
 variable "iam_role" {
   type    = string
   default = "arn:aws:iam::393788435358:role/DelegatedAdministrator"
+}
+
+variable "ubuntu_version" {
+  type    = string
+  default = "18.04"
 }
 
 variable "docker_package_version" {
@@ -46,7 +56,7 @@ source "amazon-ebs" "ubuntu" {
 
   source_ami_filter {
     filters = {
-      name                = "ubuntu/images/*ubuntu-xenial-16.04-amd64-server-*"
+      name                = "ubuntu/images/*ubuntu-*-${var.ubuntu_version}-amd64-server-*"
       root-device-type    = "ebs"
       virtualization-type = "hvm"
     }
