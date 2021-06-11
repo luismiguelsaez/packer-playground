@@ -1,0 +1,19 @@
+{
+  "builds": [
+    {
+      "name": "ubuntu",
+      "builder_type": "amazon-ebs",
+      "build_time": 1623392905,
+      "files": null,
+      "artifact_id": "us-east-1:ami-0f7cbe9b2eb222225",
+      "packer_run_uuid": "a3b8ebf8-69fd-d7e2-ba30-0330c33e1bfd",
+      "custom_data": {
+        "source_ami_creation": "2021-04-29T05:50:56.000Z",
+        "source_ami_id": "ami-0ee02acd56a52998e",
+        "source_ami_name": "ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-20210429",
+        "source_ami_owner": ""
+      }
+    }
+  ],
+  "last_run_uuid": "a3b8ebf8-69fd-d7e2-ba30-0330c33e1bfd"
+}
